@@ -3,7 +3,7 @@
 use std::{fmt::Display, iter};
 
 pub enum Predicate_{
-    Atom{name : String, is_true : bool, description : String},
+    Atom{name : String, is_ : bool, description : String},
     Rule,
 } 
 

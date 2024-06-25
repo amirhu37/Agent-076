@@ -1,28 +1,44 @@
 
-
-
 use LogicLanguague::agent::Agent;
 
+#[allow(dead_code)]
+trait ActionTemplate {}
 
-// use std::collections::HashSet;
-// use std::fmt;
+#[allow(dead_code)]
+
+#[derive(Debug)]
+enum AgentActions{
+    Up,
+    Down
+}
+
+impl ActionTemplate for AgentActions {}
+
+
+fn cls(){
+    use std::process::Command;
+    Command::new("cmd")
+    .args(&[ "cls"])
+    .output()
+    .expect("failed to execute process");
+}
+
 fn main() {
-    // let mut agent = Agent::new("Alice".to_string());
-    // agent.add_belief("it is raining".to_string());
-    // agent.add_belief("I have an umbrella".to_string());
-    // agent.add_goal("stay dry".to_string());
-    // agent.add_goal("go outside".to_string());
-    // agent.add_action("take umbrella".to_string(), "I have an umbrella".to_string());
-    
-    // let predicate1 = Predicate::new("agent".to_string(), 
-    //                         true,
-    //                          "description".to_string());
-    // let var = VecPredicate::new(vec!["Are".to_string()]);
-    // let action1 = Action::new();
-    // println!("{}", predicate1);
-    let alice: Agent = Agent::new( None, "Alice".to_string());
-    let mad_hatter: Agent = Agent::new( Some(1), "Mad Hatter".to_string());
+    cls();
 
-    println!("{}", alice);
-    println!("{}", mad_hatter);
+
+    let mut alice: Agent = Agent::new( None, "Alice".to_string() , None, None, None, None).unwrap();
+    let mad_hatter: Agent = Agent::new( Some(2), "Mad Hatter".to_string(), None, None, None, None).unwrap();
+    println!("{}", &alice.utilty);
+    alice.utilty = 0.1 ;
+    println!("{}", &alice.utilty);
+    alice.update_utitliy(3.);
+    println!("{}", alice.utilty);
+    alice.actions = vec![2 , 1] ;
+
+    // let agent: AgentActions = match alice.actions[0] {
+    //     1 => AgentActions::Up ,
+    //     2 => AgentActions::Down ,
+    // };
+    println!("{:?}", alice.actions); 
  }

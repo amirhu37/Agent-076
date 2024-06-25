@@ -6,5 +6,3 @@ pub mod predicate;
 pub mod action;
 pub mod state;
 // pub mod Predicate;
-
-

@@ -3,5 +3,11 @@ name = "LogicLanguague"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+proc-macro = false
+
 [dependencies]
-rand = "0.8.5"
+syn = "1.0"
+quote = "1.0"
+
+enum_macro = { path = "../enum_macro"}
