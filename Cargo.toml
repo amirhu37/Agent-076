@@ -1,5 +1,5 @@
 [package]
-name = "LogicLanguague"
+name = "agent-046"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,5 +9,6 @@ proc-macro = false
 [dependencies]
 syn = "1.0"
 quote = "1.0"
-
+derive_more = { version = "0.99.18" , features = ["from" , "display", "default", "constructor"] }
 enum_macro = { path = "../enum_macro"}
+rand = "0.8.5"
