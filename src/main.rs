@@ -1,12 +1,12 @@
 
-use agent_046::env::{Env, MyEnv};
+use society::env::{Env, MyEnv};
 use ndarray_rand::RandomExt;
 use rand::distributions::Uniform;
 use rand::prelude::*;
 // use derive_more::Display as cDisplay;
 
-use agent_046::{cls, learn};
-use agent_046::agent::{ Agent, MyAgent};
+use society::{cls, learn};
+use society::agent::{ Agent, MyAgent};
 
 use ndarray::{array, Array1, Array2};
 
