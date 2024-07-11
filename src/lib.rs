@@ -1,12 +1,14 @@
 #[allow(non_snake_case)]
 use std::process::Command;
 
+use ndarray::{s, Array2};
+
 
 pub mod agent;
 pub mod predicate;
 pub mod action;
 pub mod state;
-// pub mod Predicate;
+pub mod env;
 
 
 
@@ -30,8 +32,22 @@ pub fn cls() {
 }
 
 
-pub fn  mean(vec_2d : &Vec<Vec<f64>> ) -> f64{
-    let total_sum: f64 = vec_2d.iter().flatten().sum();
-    let count: usize = vec_2d.iter().map(|v| v.len()).sum();
-    total_sum / count as f64
+pub fn learn(
+    learning_rate: f64,
+    discount_factor: f64,
+    reward: f64,
+    action: usize, // Use usize for array indexing
+    state: usize,  // Use usize for array indexing
+    mut q_t: Array2<f64>,
+) -> Array2<f64> {
+    let lr = learning_rate;
+    let gamma = discount_factor;
+
+    // Find the maximum value in the row corresponding to `state`
+    let max_q_value = q_t.slice(s![state, ..]).iter().cloned().fold(f64::NEG_INFINITY, f64::max);
+
+    // Update the Q-value for the given state and action
+    q_t[[state, action]] = lr * (reward + gamma * max_q_value) + (1.0 - lr) * q_t[[state, action]];
+
+    q_t
 }
